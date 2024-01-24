@@ -1,3 +1,5 @@
+
+
 /*
 
 
@@ -76,7 +78,7 @@ public class CountItemsMatchingARule {
 		}
 		
 		
-		for(List list : items) {
+		for(List<String> list : items) {
 			if(list.get(index).equals(ruleValue)) {
 				count++;
 			}
