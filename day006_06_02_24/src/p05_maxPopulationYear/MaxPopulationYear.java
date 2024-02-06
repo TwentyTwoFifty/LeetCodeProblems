@@ -66,6 +66,8 @@ public class MaxPopulationYear {
 		return earliestYearWithMaxPopulation;
 		
 		*/
+		
+		return 0;
 	}
 
 }
