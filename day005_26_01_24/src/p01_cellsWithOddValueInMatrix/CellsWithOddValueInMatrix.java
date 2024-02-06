@@ -44,23 +44,44 @@ package p01_cellsWithOddValueInMatrix;
 public class CellsWithOddValueInMatrix {
 
 	public static void main(String[] args) {
-		int[][] indices = { { 1, 1 }, { 0, 0 } };
+		int[][] indices = { { 0, 1 }, { 1, 1 } };
 
-		System.out.println("--> " + oddCells(2, 2, indices));
+		System.out.println("--> " + oddCells(2, 3, indices));
 	}
 
 	public static int oddCells(int m, int n, int[][] indices) {
 		int[][] arr = new int[m][n];
+		int val = 0;
+		int count = 0;
 
-		for (int i = 0; i< indices.length;i++) {
-			for (int j =0; j<indices[i].length;i++) {
-				
-				
-				
+		for (int i = 0; i < indices.length; i++) {
+			for (int j = 0; j < indices[i].length; j++) {
+
+				if (j == 0) {
+					val = indices[i][j];
+					for (int k = 0; k < n; k++) {
+						arr[val][k] += 1;
+					}
+				}
+				if (j == 1) {
+					val = indices[i][j];
+
+					for (int k = 0; k < m; k++) {
+						arr[k][val] += 1;
+					}
+				}
+
 			}
-			
+
 		}
 
-		return 0;
+		for (int[] i : arr) {
+			for (int item : i) {
+				if(item%2!=0)
+					count++;
+			}
+		}
+
+		return count;
 	}
 }
