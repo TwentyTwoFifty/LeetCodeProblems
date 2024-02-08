@@ -37,53 +37,74 @@ num does not contain any leading zeros except for the zero itself.
 package p04_AddToArrayFormOfInteger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class AddToArrayFormOfInteger {
 
 	public static void main(String[] args) {
-		int[] arr = { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 };
-		int k = 1;
+		int[] arr = { 9,9};
+		int k = 34;
 
 		for (int i : addToArrayForm(arr, k))
-			System.out.println(i);
+			System.out.print(i+", ");
 	}
 
 	public static List<Integer> addToArrayForm(int[] num, int k) {
 
 		List<Integer> myList = new ArrayList<Integer>();
 
-		List<Integer> kList = new ArrayList<Integer>();
-
-		while (k != 0) {
-			kList.add(0, k % 10);
-		}
-
-		int lengthOfK = kList.size();
-
-		int minSize = Math.min(lengthOfK, num.length);
+		/*
+		 * List<Integer> kList = new ArrayList<Integer>();
+		 * 
+		 * List<Integer> numList = new ArrayList<Integer>();
+		 * 
+		 * for(int i : num) { numList.add(i); }
+		 * 
+		 * while (k != 0) { kList.add(0, k % 10); k=k/10; }
+		 * 
+		 * for(int i : numList) { System.out.print(i); } System.out.println(); for(int i
+		 * : kList) { System.out.print(i); }System.out.println();
+		 * 
+		 * while(kList.size()!=numList.size()) {
+		 * 
+		 * if(kList.size()<numList.size()) { kList.add(0,0); }else { numList.add(0,0); }
+		 * }
+		 * 
+		 * for(int i : kList) { System.out.print(i); }System.out.println();
+		 * 
+		 * int placeSum = 0; int carry = 0;
+		 * 
+		 * 
+		 * for(int i = kList.size()-1; i>=0; i--) { placeSum = numList.get(i) +
+		 * kList.get(i);
+		 * 
+		 * myList.add(0,(placeSum + carry)%10);
+		 * 
+		 * carry = (placeSum+ carry)/10; }
+		 * 
+		 * if(carry>0) { myList.add(0, carry); }
+		 */
 		
 		
-		int largerList = 0;
-
-		if (minSize == lengthOfK) {
-			largerList = num.length;
-		} else {
-			largerList = lengthOfK;
+		int carry = k;
+		int sum = 0;		
+		int i = num.length-1;
+		
+		while(i>=0|| carry>0) {
+			
+			sum = carry + (i>=0?num[i]:0);
+			
+			myList.add(0, sum%10);
+			
+			carry = sum/10;
+			
+			i--;
+			
 		}
-
-		for (int i = 0; i < minSize; i++) {
-			int carry = 0;
-
-			int placeSum = kList.get(lengthOfK - 1 - i) + num[num.length - 1 - i];
-
-			if (placeSum > 9) {
-				carry = 1;
-				placeSum = placeSum % 10;
-			}
-			myList.add(0, +placeSum + carry);
-		}
-
+		
+		
 		return myList;
 	}
 
