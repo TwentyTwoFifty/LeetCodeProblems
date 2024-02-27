@@ -32,19 +32,54 @@ s will be a valid string such that mapping is always possible.
 
 package p02_AlphaTointegerMapping;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AlphaToIntegerMapping {
 
 	public static void main(String[] args) {
-		
-		String s = "10#11#12"
+
+		String s = "1326#";
 		System.out.println(freqAlphabets(s));
 	}
 
 	static public String freqAlphabets(String s) {
-		
-		for (int i = s.length()-1; s>0; s--) {
-			if
+
+//		int number = 0;		
+//		StringBuilder sb = new StringBuilder();
+//		
+//		for (int i = s.length()-1; i>=0; i--) {
+//			System.out.println(" i = "+i);
+//			
+//			if(s.charAt(i)=='#') {
+//				System.out.println("here");
+//				number = Character.getNumericValue(s.charAt(i-1)) ;
+//				
+//				number = number + 10*Character.getNumericValue(s.charAt(i-2));
+//				
+//				i = i - 2;				
+//				
+//			}else {
+//				number = Character.getNumericValue(s.charAt(i));
+//			}
+//			
+//			sb.insert(0, (char)(number + 96));		
+//		}
+//				
+//		return sb.toString();
+
+		StringBuilder sb1 = new StringBuilder("");
+		int num = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if (s.charAt(i) == '#') {
+				num = Character.getNumericValue(s.charAt(i-1)) +10*Character.getNumericValue(s.charAt(i-2));
+				i = i-2;
+			} else {
+				num = Character.getNumericValue(s.charAt(i));
+			}
+			
+			sb1.insert(0, (char)(num+96));
 		}
-		return s;
+		return sb1.toString();
 	}
 }
